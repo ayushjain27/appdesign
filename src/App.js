@@ -24,7 +24,7 @@ function App() {
   return (
     <>
       <Router>
-        <Navbar />
+        <Navbar showAlert={showAlert}/>
         <Alert alert={alert} />
         <Routes>
           <Route exact path='/' element={<Dashboard showAlert={showAlert} />} />

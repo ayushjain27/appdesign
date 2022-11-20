@@ -4,8 +4,7 @@ import styles from './Navbar.module.css';
 
 import { FaBars, FaSearch, FaTimes } from 'react-icons/fa';
 
-import { useLocation } from 'react-router-dom';
-const Navbar = () => {
+const Navbar = (props) => {
 
     const navigate = useNavigate();
 
@@ -14,11 +13,14 @@ const Navbar = () => {
     const handleClick = () => {
         setToggle(!toggle);
     }
-    const withoutnavigationbar = ["/form", "/welcome", "/work", "/recording", "/confirm", "/start", "/question", "/audiorecording", "/mcq", "/thanks"];
-    const { pathname } = useLocation();
-    if (withoutnavigationbar.some((item) => pathname.includes(item))) {
-        return null;
+
+    const handleLogOut = (e) => {
+            e.preventDefault();
+                props.showAlert("You have logout you screen", "success");
+                localStorage.removeItem('token')
+                navigate('/login');
     }
+
     return (
         <>
             <style jsx='true'>
@@ -59,8 +61,8 @@ const Navbar = () => {
                             <button onClick={() => navigate('/interaction')} className={`${styles.search}`}>
                                 <FaSearch className='fs-4' />
                             </button>
-                            <button onClick={() => navigate('/login')} className={`${styles.login} btn btn-outline-secondary`}>Login</button>
-                            <button onClick={() => navigate('/register')} className="btn btn-dark">Sign Up</button>
+                            <button onClick={() => navigate('/login')} className={`${styles.login} btn btn-warning`}>Login</button>
+                            <button onClick={handleLogOut} className="btn btn-danger">LogOut</button>
                         </div>
                     </div>
                 </div>

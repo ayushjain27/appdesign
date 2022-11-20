@@ -5,20 +5,20 @@ import { useNavigate } from 'react-router-dom';
 // import { useNavigate } from 'react-router-dom';
 
 const Dashboard = (props) => {
-    const [detail, setDetail] = useState({ name: "", phone_number: "", address: "", item_name: "", associate_1: "", phone_number_1: "", address_1: "", due_1: "", associate_2: "", phone_number_2: "", address_2: "", due_2: "", associate_3: "", phone_number_3: "", address_3: "", due_3: "" });
+    const [detail, setDetail] = useState({ name: "", phone_number: "", address: "", item_name: "", item_price: "", down_payment:"", emi_amount:"", due_1: "", amount_1:"", due_2: "", amount_2:"", due_3: "", amount_3:"", due_4: "", amount_4:"", due_5: "", amount_5:"", associate_1: "", phone_number_1: "", address_1: "", associate_2: "", phone_number_2: "", address_2: "", associate_3: "", phone_number_3: "", address_3: "" });
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         if (localStorage.getItem('token')) {
             e.preventDefault();
-            const { name, phone_number, address, item_name, associate_1, phone_number_1, address_1, due_1, associate_2, phone_number_2, address_2, due_2, associate_3, phone_number_3, address_3, due_3 } = detail;
+            const { name, phone_number, address, item_name, item_price, down_payment, emi_amount, due_1, amount_1, due_2, amount_2, due_3, amount_3, due_4, amount_4, due_5, amount_5, associate_1, phone_number_1, address_1, associate_2, phone_number_2, address_2, associate_3, phone_number_3, address_3 } = detail;
             const response = await fetch("http://localhost:5000/api/details/adddetail", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     'auth-token': localStorage.getItem('token')
                 },
-                body: JSON.stringify({ name, phone_number, address, item_name, associate_1, phone_number_1, address_1, due_1, associate_2, phone_number_2, address_2, due_2, associate_3, phone_number_3, address_3, due_3 })
+                body: JSON.stringify({ name, phone_number, address, item_name, item_price, down_payment, emi_amount, due_1, amount_1, due_2, amount_2, due_3, amount_3, due_4, amount_4, due_5, amount_5, associate_1, phone_number_1, address_1, associate_2, phone_number_2, address_2, associate_3, phone_number_3, address_3 })
             });
             const json = await response.json();
             console.log(json);
@@ -71,6 +71,7 @@ const Dashboard = (props) => {
                     <div className='card shadow border-0'>
                         <div className="card-body">
                             <form>
+                                <h3 className="mb-3 text-decoration-underline">Customer Details</h3>
                                 <div className="row">
                                     <div className="col-md-4">
                                         <div className="mb-3">
@@ -113,6 +114,47 @@ const Dashboard = (props) => {
                                     </div>
                                 </div>
                                 <div className="row">
+                                    <div className="col-md-4">
+                                        <div className="mb-3">
+                                            <label className="form-label fw-bold">Item Price</label>
+                                            <input
+                                                type="number"
+                                                className="form-control"
+                                                id="item_price"
+                                                name="item_price"
+                                                onChange={onChange}
+                                                placeholder='Enter item price'
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="col-md-4">
+                                        <div className="mb-3">
+                                            <label className="form-label fw-bold">Down Payment</label>
+                                            <input
+                                                type="number"
+                                                className="form-control"
+                                                id="down_payment"
+                                                name="down_payment"
+                                                onChange={onChange}
+                                                placeholder='Enter Down Payment'
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="col-md-4">
+                                        <div className="mb-3">
+                                            <label className="form-label fw-bold">Emi Amount</label>
+                                            <input
+                                                type="number"
+                                                className="form-control"
+                                                name='emi_amount'
+                                                id="emi_amount"
+                                                onChange={onChange}
+                                                placeholder='Enter Emi Amount'
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="row">
                                     <div className="col-md-12">
                                         <div className="mb-3">
                                             <label className="form-label fw-bold">Address</label>
@@ -128,7 +170,143 @@ const Dashboard = (props) => {
                                     </div>
                                 </div>
                                 <div className="row">
-                                    <div className="col-md-4">
+                                    <div className="col-md-6">
+                                        <div className="mb-3">
+                                        <label className="form-label fw-bold">Due Date</label>
+                                            <input
+                                                type="date"
+                                                className="form-control"
+                                                name="due_1"
+                                                id="due_1"
+                                                onChange={onChange}
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="col-md-6">
+                                        <div className="mb-3">
+                                            <label className="form-label fw-bold">Amount Name</label>
+                                            <input
+                                                type="number"
+                                                className="form-control"
+                                                id="amount_1"
+                                                name="amount_1"
+                                                onChange={onChange}
+                                                placeholder='Enter Amount'
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="row">
+                                    <div className="col-md-6">
+                                        <div className="mb-3">
+                                        <label className="form-label fw-bold">Due Date</label>
+                                            <input
+                                                type="date"
+                                                className="form-control"
+                                                name="due_2"
+                                                id="due_2"
+                                                onChange={onChange}
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="col-md-6">
+                                        <div className="mb-3">
+                                            <label className="form-label fw-bold">Amount Name</label>
+                                            <input
+                                                type="number"
+                                                className="form-control"
+                                                id="amount_2"
+                                                name="amount_2"
+                                                onChange={onChange}
+                                                placeholder='Enter Amount'
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="row">
+                                    <div className="col-md-6">
+                                        <div className="mb-3">
+                                        <label className="form-label fw-bold">Due Date</label>
+                                            <input
+                                                type="date"
+                                                className="form-control"
+                                                name="due_3"
+                                                id="due_3"
+                                                onChange={onChange}
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="col-md-6">
+                                        <div className="mb-3">
+                                            <label className="form-label fw-bold">Amount Name</label>
+                                            <input
+                                                type="number"
+                                                className="form-control"
+                                                id="amount_3"
+                                                name="amount_3"
+                                                onChange={onChange}
+                                                placeholder='Enter Amount'
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="row">
+                                    <div className="col-md-6">
+                                        <div className="mb-3">
+                                        <label className="form-label fw-bold">Due Date</label>
+                                            <input
+                                                type="date"
+                                                className="form-control"
+                                                name="due_4"
+                                                id="due_4"
+                                                onChange={onChange}
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="col-md-6">
+                                        <div className="mb-3">
+                                            <label className="form-label fw-bold">Amount Name</label>
+                                            <input
+                                                type="number"
+                                                className="form-control"
+                                                id="amount_4"
+                                                name="amount_4"
+                                                onChange={onChange}
+                                                placeholder='Enter Amount'
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="row">
+                                    <div className="col-md-6">
+                                        <div className="mb-3">
+                                        <label className="form-label fw-bold">Due Date</label>
+                                            <input
+                                                type="date"
+                                                className="form-control"
+                                                name="due_5"
+                                                id="due_5"
+                                                onChange={onChange}
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="col-md-6">
+                                        <div className="mb-3">
+                                            <label className="form-label fw-bold">Amount Name</label>
+                                            <input
+                                                type="number"
+                                                className="form-control"
+                                                id="amount_5"
+                                                name="amount_5"
+                                                onChange={onChange}
+                                                placeholder='Enter Amount'
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                <h3 className="mb-3 text-decoration-underline">Associate Details</h3>
+                                <div className="row">
+                                    <div className="col-md-6">
                                         <div className="mb-3">
                                             <label className="form-label fw-bold">Associate_1</label>
                                             <input
@@ -141,7 +319,7 @@ const Dashboard = (props) => {
                                             />
                                         </div>
                                     </div>
-                                    <div className="col-md-4">
+                                    <div className="col-md-6">
                                         <div className="mb-3">
                                             <label className="form-label fw-bold">Phone Number</label>
                                             <input
@@ -151,18 +329,6 @@ const Dashboard = (props) => {
                                                 name="phone_number_1"
                                                 onChange={onChange}
                                                 placeholder='Enter Phone Number'
-                                            />
-                                        </div>
-                                    </div>
-                                    <div className="col-md-4">
-                                        <div className="mb-3">
-                                            <label className="form-label fw-bold">Due Date</label>
-                                            <input
-                                                type="date"
-                                                className="form-control"
-                                                name="due_1"
-                                                id="due_1"
-                                                onChange={onChange}
                                             />
                                         </div>
                                     </div>
@@ -183,7 +349,7 @@ const Dashboard = (props) => {
                                     </div>
                                 </div>
                                 <div className="row">
-                                    <div className="col-md-4">
+                                    <div className="col-md-6">
                                         <div className="mb-3">
                                             <label className="form-label fw-bold">Associate_2</label>
                                             <input
@@ -196,7 +362,7 @@ const Dashboard = (props) => {
                                             />
                                         </div>
                                     </div>
-                                    <div className="col-md-4">
+                                    <div className="col-md-6">
                                         <div className="mb-3">
                                             <label className="form-label fw-bold">Phone Number</label>
                                             <input
@@ -206,18 +372,6 @@ const Dashboard = (props) => {
                                                 name="phone_number_2"
                                                 onChange={onChange}
                                                 placeholder='Enter Phone Number'
-                                            />
-                                        </div>
-                                    </div>
-                                    <div className="col-md-4">
-                                        <div className="mb-3">
-                                            <label className="form-label fw-bold">Due Date</label>
-                                            <input
-                                                type="date"
-                                                className="form-control"
-                                                name="due_2"
-                                                id="due_2"
-                                                onChange={onChange}
                                             />
                                         </div>
                                     </div>
@@ -238,7 +392,7 @@ const Dashboard = (props) => {
                                     </div>
                                 </div>
                                 <div className="row">
-                                    <div className="col-md-4">
+                                    <div className="col-md-6">
                                         <div className="mb-3">
                                             <label className="form-label fw-bold">Associate_3</label>
                                             <input
@@ -251,7 +405,7 @@ const Dashboard = (props) => {
                                             />
                                         </div>
                                     </div>
-                                    <div className="col-md-4">
+                                    <div className="col-md-6">
                                         <div className="mb-3">
                                             <label className="form-label fw-bold">Phone Number</label>
                                             <input
@@ -261,18 +415,6 @@ const Dashboard = (props) => {
                                                 name="phone_number_3"
                                                 onChange={onChange}
                                                 placeholder='Enter Phone Number'
-                                            />
-                                        </div>
-                                    </div>
-                                    <div className="col-md-4">
-                                        <div className="mb-3">
-                                            <label className="form-label fw-bold">Due Date</label>
-                                            <input
-                                                type="date"
-                                                className="form-control"
-                                                name="due_3"
-                                                id="due_3"
-                                                onChange={onChange}
                                             />
                                         </div>
                                     </div>
