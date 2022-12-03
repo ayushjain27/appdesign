@@ -58,7 +58,7 @@ const Navbar = (props) => {
                             </li>
                         </ul>
                         <div className={`${styles.buttons} d-flex gap-2`}>
-                            <button onClick={() => navigate('/interaction')} className={`${styles.search}`}>
+                            <button onClick={() => navigate('/searchbar')} className={`${styles.search}`}>
                                 <FaSearch className='fs-4' />
                             </button>
                             <button onClick={() => navigate('/login')} className={`${styles.login} btn btn-warning`}>Login</button>

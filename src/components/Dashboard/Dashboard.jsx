@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-// import noteContext from "../context/notes/noteContext"
-
-// import { useNavigate } from 'react-router-dom';
 
 const Dashboard = (props) => {
     const [detail, setDetail] = useState({ name: "", phone_number: "", address: "", item_name: "", item_price: "", down_payment:"", emi_amount:"", due_1: "", amount_1:"", due_2: "", amount_2:"", due_3: "", amount_3:"", due_4: "", amount_4:"", due_5: "", amount_5:"", associate_1: "", phone_number_1: "", address_1: "", associate_2: "", phone_number_2: "", address_2: "", associate_3: "", phone_number_3: "", address_3: "" });
@@ -36,19 +33,11 @@ const Dashboard = (props) => {
         else {
             navigate("/login");
         }
-        //   setDetails(details.concat(detail));
-
-        //   console.log("Adding a new note") 
-    }
+     }
 
     const onChange = (e) => {
         setDetail({ ...detail, [e.target.name]: e.target.value })
     }
-
-    // const navigate = useNavigate();
-    // const handleSubmit = () => {
-    //     navigate("/display");
-    // }
 
     return (
         <>
