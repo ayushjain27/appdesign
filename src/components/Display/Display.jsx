@@ -33,14 +33,16 @@ const Display = () => {
     return (
         <>
             <div className='container my-3'>
-                <div className="row my-3">
+                <div className="row">
                     {data.map((item) => {
                         return (
                             <>
-                                <div className="col-md-4">
+                                <div className="col-md-4 my-3">
                                     <div class={`${style.card} card`}>
                                         <img src="./Images/login.svg" class="card-img-top" alt="..." />
                                         <div class="card-body">
+                                            <h5 class="card-title">Customer_Id: {item.customer_id}</h5>
+                                            <h5 class="card-title">Reference_Id: {item.reference_id}</h5>
                                             <h5 class="card-title">Name: {item.name}</h5>
                                             <h5 class="card-title">Phone Number: {item.phone_number}</h5>
                                             <h5 class="card-title">Item Name: {item.name}</h5>

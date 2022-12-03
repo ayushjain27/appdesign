@@ -2,20 +2,20 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Dashboard = (props) => {
-    const [detail, setDetail] = useState({ name: "", phone_number: "", address: "", item_name: "", item_price: "", down_payment:"", emi_amount:"", due_1: "", amount_1:"", due_2: "", amount_2:"", due_3: "", amount_3:"", due_4: "", amount_4:"", due_5: "", amount_5:"", associate_1: "", phone_number_1: "", address_1: "", associate_2: "", phone_number_2: "", address_2: "", associate_3: "", phone_number_3: "", address_3: "" });
+    const [detail, setDetail] = useState({ customer_id: "", reference_id: "", name: "", phone_number: "", address: "", item_name: "", item_price: "", down_payment: "", emi_amount: "", due_1: "", amount_1: "", due_2: "", amount_2: "", due_3: "", amount_3: "", due_4: "", amount_4: "", due_5: "", amount_5: "", associate_1: "", phone_number_1: "", address_1: "", associate_2: "", phone_number_2: "", address_2: "", associate_3: "", phone_number_3: "", address_3: "" });
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         if (localStorage.getItem('token')) {
             e.preventDefault();
-            const { name, phone_number, address, item_name, item_price, down_payment, emi_amount, due_1, amount_1, due_2, amount_2, due_3, amount_3, due_4, amount_4, due_5, amount_5, associate_1, phone_number_1, address_1, associate_2, phone_number_2, address_2, associate_3, phone_number_3, address_3 } = detail;
+            const { customer_id, reference_id, name, phone_number, address, item_name, item_price, down_payment, emi_amount, due_1, amount_1, due_2, amount_2, due_3, amount_3, due_4, amount_4, due_5, amount_5, associate_1, phone_number_1, address_1, associate_2, phone_number_2, address_2, associate_3, phone_number_3, address_3 } = detail;
             const response = await fetch("http://localhost:5000/api/details/adddetail", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     'auth-token': localStorage.getItem('token')
                 },
-                body: JSON.stringify({ name, phone_number, address, item_name, item_price, down_payment, emi_amount, due_1, amount_1, due_2, amount_2, due_3, amount_3, due_4, amount_4, due_5, amount_5, associate_1, phone_number_1, address_1, associate_2, phone_number_2, address_2, associate_3, phone_number_3, address_3 })
+                body: JSON.stringify({ customer_id, reference_id, name, phone_number, address, item_name, item_price, down_payment, emi_amount, due_1, amount_1, due_2, amount_2, due_3, amount_3, due_4, amount_4, due_5, amount_5, associate_1, phone_number_1, address_1, associate_2, phone_number_2, address_2, associate_3, phone_number_3, address_3 })
             });
             const json = await response.json();
             console.log(json);
@@ -33,7 +33,7 @@ const Dashboard = (props) => {
         else {
             navigate("/login");
         }
-     }
+    }
 
     const onChange = (e) => {
         setDetail({ ...detail, [e.target.name]: e.target.value })
@@ -61,6 +61,34 @@ const Dashboard = (props) => {
                         <div className="card-body">
                             <form>
                                 <h3 className="mb-3 text-decoration-underline">Customer Details</h3>
+                                <div className="row">
+                                    <div className="col-md-6">
+                                        <div className="mb-3">
+                                            <label className="form-label fw-bold">Customer Id</label>
+                                            <input
+                                                type="number"
+                                                className="form-control"
+                                                id="customer_id"
+                                                name="customer_id"
+                                                onChange={onChange}
+                                                placeholder='Enter customer id'
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="col-md-6">
+                                        <div className="mb-3">
+                                            <label className="form-label fw-bold">Reference Id</label>
+                                            <input
+                                                type="number"
+                                                className="form-control"
+                                                id="reference_id"
+                                                name="reference_id"
+                                                onChange={onChange}
+                                                placeholder='Enter Reference id'
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
                                 <div className="row">
                                     <div className="col-md-4">
                                         <div className="mb-3">
@@ -161,7 +189,7 @@ const Dashboard = (props) => {
                                 <div className="row">
                                     <div className="col-md-6">
                                         <div className="mb-3">
-                                        <label className="form-label fw-bold">Due Date</label>
+                                            <label className="form-label fw-bold">Due Date</label>
                                             <input
                                                 type="date"
                                                 className="form-control"
@@ -173,7 +201,7 @@ const Dashboard = (props) => {
                                     </div>
                                     <div className="col-md-6">
                                         <div className="mb-3">
-                                            <label className="form-label fw-bold">Amount Name</label>
+                                            <label className="form-label fw-bold">Amount Number</label>
                                             <input
                                                 type="number"
                                                 className="form-control"
@@ -188,7 +216,7 @@ const Dashboard = (props) => {
                                 <div className="row">
                                     <div className="col-md-6">
                                         <div className="mb-3">
-                                        <label className="form-label fw-bold">Due Date</label>
+                                            <label className="form-label fw-bold">Due Date</label>
                                             <input
                                                 type="date"
                                                 className="form-control"
@@ -200,7 +228,7 @@ const Dashboard = (props) => {
                                     </div>
                                     <div className="col-md-6">
                                         <div className="mb-3">
-                                            <label className="form-label fw-bold">Amount Name</label>
+                                            <label className="form-label fw-bold">Amount Number</label>
                                             <input
                                                 type="number"
                                                 className="form-control"
@@ -215,7 +243,7 @@ const Dashboard = (props) => {
                                 <div className="row">
                                     <div className="col-md-6">
                                         <div className="mb-3">
-                                        <label className="form-label fw-bold">Due Date</label>
+                                            <label className="form-label fw-bold">Due Date</label>
                                             <input
                                                 type="date"
                                                 className="form-control"
@@ -227,7 +255,7 @@ const Dashboard = (props) => {
                                     </div>
                                     <div className="col-md-6">
                                         <div className="mb-3">
-                                            <label className="form-label fw-bold">Amount Name</label>
+                                            <label className="form-label fw-bold">Amount Number</label>
                                             <input
                                                 type="number"
                                                 className="form-control"
@@ -242,7 +270,7 @@ const Dashboard = (props) => {
                                 <div className="row">
                                     <div className="col-md-6">
                                         <div className="mb-3">
-                                        <label className="form-label fw-bold">Due Date</label>
+                                            <label className="form-label fw-bold">Due Date</label>
                                             <input
                                                 type="date"
                                                 className="form-control"
@@ -254,7 +282,7 @@ const Dashboard = (props) => {
                                     </div>
                                     <div className="col-md-6">
                                         <div className="mb-3">
-                                            <label className="form-label fw-bold">Amount Name</label>
+                                            <label className="form-label fw-bold">Amount Number</label>
                                             <input
                                                 type="number"
                                                 className="form-control"
@@ -269,7 +297,7 @@ const Dashboard = (props) => {
                                 <div className="row">
                                     <div className="col-md-6">
                                         <div className="mb-3">
-                                        <label className="form-label fw-bold">Due Date</label>
+                                            <label className="form-label fw-bold">Due Date</label>
                                             <input
                                                 type="date"
                                                 className="form-control"
@@ -281,7 +309,7 @@ const Dashboard = (props) => {
                                     </div>
                                     <div className="col-md-6">
                                         <div className="mb-3">
-                                            <label className="form-label fw-bold">Amount Name</label>
+                                            <label className="form-label fw-bold">Amount Number</label>
                                             <input
                                                 type="number"
                                                 className="form-control"

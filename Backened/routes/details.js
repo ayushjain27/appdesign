@@ -17,6 +17,7 @@ router.get('/fetchalldetails', fetchuser, async (req, res) => {
 
 // ROUTE 2:  Add a new Detail using: POST "/api/details/adddetail". login required
 router.post('/adddetail', fetchuser, [
+    body('customer_id', 'Customer_id cannot be blank').isLength({ min: 2 }),
     body('name', 'Name cannot be blank').isLength({ min: 1 }),
     body('phone_number', 'Please enter 10 digit number').isLength({ min: 10 }),
     body('address', 'Address cannot be blank').isLength({ min: 1 }),
@@ -27,14 +28,14 @@ router.post('/adddetail', fetchuser, [
 ], async (req, res) => {
     try {
         let success=false;
-        const { name, phone_number, address, item_name, item_price, down_payment, emi_amount, due_1, amount_1, due_2, amount_2, due_3, amount_3, due_4, amount_4, due_5, amount_5, associate_1, phone_number_1, address_1, associate_2, phone_number_2, address_2, associate_3, phone_number_3, address_3 } = req.body;
+        const { customer_id, reference_id, name, phone_number, address, item_name, item_price, down_payment, emi_amount, due_1, amount_1, due_2, amount_2, due_3, amount_3, due_4, amount_4, due_5, amount_5, associate_1, phone_number_1, address_1, associate_2, phone_number_2, address_2, associate_3, phone_number_3, address_3 } = req.body;
         // if there are errors, return Bad request and the errors
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
         }
         const detail = new Detail({
-            name, phone_number, address, item_name, item_price, down_payment, emi_amount, due_1, amount_1, due_2, amount_2, due_3, amount_3, due_4, amount_4, due_5, amount_5, associate_1, phone_number_1, address_1, associate_2, phone_number_2, address_2, associate_3, phone_number_3, address_3, user: req.user.id
+            customer_id, reference_id, name, phone_number, address, item_name, item_price, down_payment, emi_amount, due_1, amount_1, due_2, amount_2, due_3, amount_3, due_4, amount_4, due_5, amount_5, associate_1, phone_number_1, address_1, associate_2, phone_number_2, address_2, associate_3, phone_number_3, address_3, user: req.user.id
         })
         const savedDetail = await detail.save();
         success = true;

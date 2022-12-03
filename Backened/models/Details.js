@@ -6,6 +6,13 @@ const DetailsSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user'
     },
+    customer_id: {
+        type: Number,
+        required: true
+    },
+    reference_id: {
+        type: Number,
+    },
     name: {
         type: String,
         required: true
