@@ -34,7 +34,7 @@ const SearchBar = () => {
     const onChange = (event) => {
         const search = event.target.value;
         const newFilter = data.filter((value) => {
-            return value.item_price.includes(search) || value.due_1.includes(search) || value.due_2.includes(search) || value.due_3.includes(search) || value.due_4.includes(search) || value.due_5.includes(search);
+            return value.due_1.includes(search) || value.due_2.includes(search) || value.due_3.includes(search) || value.due_4.includes(search) || value.due_5.includes(search);
         })
         setFilter(newFilter);
         console.log("Ayush");
