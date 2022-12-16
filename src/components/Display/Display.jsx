@@ -1,10 +1,18 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import exportFromJSON from 'export-from-json';
 import style from './Display.module.css';
 
 const Display = () => {
     const [data, setData] = useState([]);
+    const datas = [
+        { name : "Ayush", age: "23"},
+        { name : "AyushJ", age: "20"}
+    ];
+    const fileName = "download"
+    const exportType = "xls"
+
     const navigate = useNavigate();
     const getDetails = async () => {
         // TODO : API Call
@@ -30,8 +38,15 @@ const Display = () => {
         }
     }, [])
 
+    const ExportToExcel = () => {
+        exportFromJSON({data, fileName, exportType});
+        console.log(exportFromJSON({data, fileName, exportType}));
+        console.log("Ayush");
+    }
+
     return (
         <>
+        <button className='mx-3' type="button" onClick={ExportToExcel}>Download</button>
             <div className='container my-3'>
                 <div className="row">
                     {data.map((item) => {
@@ -45,7 +60,7 @@ const Display = () => {
                                             <h5 class="card-title">Reference_Id: {item.reference_id}</h5>
                                             <h5 class="card-title">Name: {item.name}</h5>
                                             <h5 class="card-title">Phone Number: {item.phone_number}</h5>
-                                            <h5 class="card-title">Item Name: {item.name}</h5>
+                                            <h5 class="card-title">Item Name: {item.item_name}</h5>
                                             <h5 class="card-title">Item Price: {item.item_price}</h5>
                                             <h5 class="card-title">Down Payment: {item.down_payment}</h5>
                                             <h5 class="card-title">Emi_Amount: {item.emi_amount}</h5>
