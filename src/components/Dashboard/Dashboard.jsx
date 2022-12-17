@@ -125,7 +125,7 @@ const Dashboard = (props) => {
                                                 name='item_name'
                                                 id="item_name"
                                                 onChange={onChange}
-                                                placeholder='Address'
+                                                placeholder='Item Name'
                                             />
                                         </div>
                                     </div>

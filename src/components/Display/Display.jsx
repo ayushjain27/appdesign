@@ -6,10 +6,6 @@ import style from './Display.module.css';
 
 const Display = () => {
     const [data, setData] = useState([]);
-    const datas = [
-        { name : "Ayush", age: "23"},
-        { name : "AyushJ", age: "20"}
-    ];
     const fileName = "download"
     const exportType = "xls"
 
