@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import styles from './SearchBar';
+import exportFromJSON from 'export-from-json';
 import { useNavigate } from 'react-router-dom';
 
 const SearchBar = () => {
     const navigate = useNavigate();
     const [data, setData] = useState([]);
     const [filter, setFilter] = useState([]);
-
+    const fileName = "download"
+    const exportType = "xls"
     const getDetails = async () => {
         // TODO : API Call
         const response = await fetch("http://localhost:5000/api/details/fetchalldetails", {
@@ -19,7 +21,7 @@ const SearchBar = () => {
 
         const json = await response.json();
         // console.log(json);
-        setData(json);
+        setFilter(json);
     }
 
     useEffect(() => {
@@ -31,17 +33,24 @@ const SearchBar = () => {
         }
     }, [])
 
+    const ExportToExcel = () => {
+        exportFromJSON({data, fileName, exportType});
+        // console.log(exportFromJSON({data, fileName, exportType}));
+        // console.log("Ayush");
+    }
+
     const onChange = (event) => {
         const search = event.target.value;
-        const newFilter = data.filter((value) => {
+        const newFilter = filter.filter((value) => {
             return value.due_1.includes(search) || value.due_2.includes(search) || value.due_3.includes(search) || value.due_4.includes(search) || value.due_5.includes(search);
         })
-        setFilter(newFilter);
+        setData(newFilter);
         console.log("Ayush");
     }
 
     return (
         <>
+        <button className='mx-3' type="button" onClick={ExportToExcel}>Download</button>
             <div className="container">
                 <div className="d-grid col-lg-7 mx-auto">
                     <div className={`${styles.card} card`}>
@@ -58,7 +67,7 @@ const SearchBar = () => {
             </div>
             <div className='container my-3'>
                 <div className="row">
-                    {filter.map((item) => {
+                    {data.map((item) => {
                         return (
                             <>
                                 <div className="col-md-4 my-3">
