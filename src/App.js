@@ -2,6 +2,7 @@ import './App.css';
 import React, { useState } from 'react';
 import Navbar from './components/Navbar/Navbar';
 
+
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Dashboard from './components/Dashboard/Dashboard';
 import Display from './components/Display/Display';
