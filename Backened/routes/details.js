@@ -102,7 +102,7 @@ router.put('/updatedetail/:id', fetchuser, async (req, res) => {
 // ROUTE 4: Delete an existing Detail using: DELETE "/api/details/deletedetail". Login required
 router.delete('/deletedetail/:id', fetchuser, async (req, res) => {
     try {
-        // Find the note to be deleted and delete it
+        // Find the detail to be deleted and delete it
         let detail = await Detail.findById(req.params.id);
         if (!detail) { return res.status(404).send("Not found") }
     
